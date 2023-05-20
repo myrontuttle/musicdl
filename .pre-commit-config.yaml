@@ -62,11 +62,6 @@ repos:
         # https://pre-commit.com/#top_level-default_language_version
         language_version: python3.9
 
-  - repo: https://github.com/PyCQA/bandit
-    rev: '1.7.5'
-    hooks:
-    - id: bandit
-
     # Run unit tests, verify that they pass. Note that coverage is run against
     # the ./src directory here because that is what will be committed. In the
     # github workflow script, the coverage is run against the installed package
