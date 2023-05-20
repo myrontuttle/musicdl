@@ -1,9 +1,9 @@
-from typing import Optional
+from typing import List, Optional
 
 import logging
 import os
 
-from pytube import YouTube
+from pytube import Search, YouTube
 from pytube.exceptions import VideoUnavailable
 
 logging.basicConfig(
@@ -53,3 +53,27 @@ def download_video(url: str) -> Optional[str]:
     except VideoUnavailable:
         logger.error(f"Video {url} is unavailable.")
         return None
+
+
+def find_videos(artist: str) -> List[str]:
+    """
+    Finds YouTube videos of the given artist.
+    Args:
+        artist: The artist to find videos of.
+
+    Returns:
+        A list of YouTube URLs.
+    """
+    try:
+        query = f"{artist}"
+        logger.info(f"Searching for {query}...")
+        results = Search(query).results[:10]
+        for result in results:
+            if result.length > 360:
+                results.remove(result)
+        urls = [result.watch_url for result in results]
+        logger.info(f"Found {len(urls)} videos.")
+        return urls
+    except VideoUnavailable:
+        logger.error(f"Videos for {artist} are unavailable.")
+        return []

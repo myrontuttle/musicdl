@@ -15,3 +15,9 @@ def test_download_youtube_video():
 def test_download_error_notification():
     url = "https://www.youtube.com/watch?v=invalid_url"
     assert download_youtube.download_video(url) is None
+
+
+def test_input_artist_name():
+    artist_name = "The Beach Boys"
+    urls = download_youtube.find_videos(artist_name)
+    assert urls is not None
