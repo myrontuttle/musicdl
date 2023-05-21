@@ -6,7 +6,7 @@ build-backend = "pdm.pep517.api"
 
 [project]
 name = "musicdl"
-version = "0.3.0"
+version = "0.3.1"
 description = "Music Downloader"
 authors = [
     { name = "Myron Tuttle", email = "myrongt@gmail.com" },
